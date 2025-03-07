@@ -1,4 +1,4 @@
-This tarball contains:
+This repository contains:
 
 1. CPU XML models, located at models/MR*.xml
 2. Code for the MR2 model source code changes, located in mr2/
