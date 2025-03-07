@@ -1,0 +1,9 @@
+## OUTPUT Files ##
+*.csv
+
+## Object directories ##
+obj_dbg/
+obj_opt/
+
+## Temporary files
+*~

@@ -1,0 +1,24 @@
+This tarball contains:
+
+1. CPU XML models, located at models/MR*.xml
+2. Code for the MR2 model source code changes, located in mr2/
+3. Stock McPAT v1.2, located in v1.2/
+
+Note: The CPU models do not contain any activity factors or benchmark
+performance statistics. Those numbers must be provided by the user with a
+suitable performance simulator.
+
+Please see the following paper for more details:
+------------------------------------------------
+Sam Xi, Hans Jacobson, Pradip Bose, Gu-Yeon Wei, and David Brooks. "Quantifying
+Sources of Error in McPAT and Potential Impacts on Architectural Studies",
+Proc. of High Performance Computer Architecture, 2015.
+------------------------------------------------
+
+Please do not hesitate to ask if you have any questions!
+
+Thank you,
+
+Sam Xi
+Harvard University
+samxi@seas.harvard.edu
