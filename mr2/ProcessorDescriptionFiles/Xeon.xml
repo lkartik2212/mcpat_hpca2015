@@ -23,7 +23,7 @@
 		<param name="interconnect_projection_type" value="0"/><!--0: aggressive wire technology; 1: conservative wire technology -->
 		<param name="device_type" value="0"/><!--0: HP(High Performance Type); 1: LSTP(Low standby power) 2: LOP (Low Operating Power)  -->
 		<param name="longer_channel_device" value="1"/><!-- 0 no use; 1 use when possible -->
-		<param name="power_gating" value="1"/><!-- 0 not enabled; 1 enabled -->
+		<param name="power_gating" value="0"/><!-- 0 not enabled; 1 enabled -->
 		<param name="machine_bits" value="64"/>
 		<param name="virtual_address_width" value="64"/>
 		<param name="physical_address_width" value="52"/>

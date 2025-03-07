@@ -33,7 +33,7 @@
   <!-- 0 no use; 1 use when aggressive -->
   <param name="longer_channel_device" value="1"/>
   <!-- 0 not enabled; 1 enabled -->
-  <param name="power_gating" value="1"/>
+  <param name="power_gating" value="0"/>
   <param name="machine_bits" value="64"/>
   <!-- address width determines the tag_width in Cache, LSQ and buffers in the
   cache controller. default value is machine_bits, if not set -->
