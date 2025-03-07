@@ -132,11 +132,16 @@ void init_tech_params(double technology, bool is_tag)
        exit(0);
     }
   }
-//  else if (technology < 17 && technology > 15)
-//  {
-//    tech_lo = 16;
-//    tech_hi = 16;
-//  }
+  else if (technology < 17 && technology > 15)
+  {
+    tech_lo = 16;
+    tech_hi = 16;
+  }
+  else if (technology < 8 && technology > 6)
+  {
+    tech_lo = 7;
+    tech_hi = 7;
+  }
   else if (technology < 180 && technology > 90)
     {
       tech_lo = 180;
@@ -162,12 +167,17 @@ void init_tech_params(double technology, bool is_tag)
       tech_lo = 32;
       tech_hi = 22;
     }
-//  else if (technology < 22 && technology > 16)
-//    {
-//      tech_lo = 22;
-//      tech_hi = 16;
-//    }
-      else
+  else if (technology < 22 && technology > 15)
+    {
+      tech_lo = 22;
+      tech_hi = 16;
+    }
+  else if (technology < 15 && technology > 8)
+    {
+      tech_lo = 16;
+      tech_hi = 7;
+    }
+  else
     {
   	  cout<<"Invalid technology nodes"<<endl;
   	  exit(0);
@@ -294,7 +304,7 @@ void init_tech_params(double technology, bool is_tag)
       curr_area_cell_cam = 292 * g_ip->F_sz_um * g_ip->F_sz_um;//360
       curr_asp_ratio_cell_cam = 2.92;//2.5
       //Empirical undifferetiated core/FU coefficient
-      curr_logic_scaling_co_eff  = 1.0/1.5;//linear scaling from 90nm
+      curr_logic_scaling_co_eff  = 1.5;//linear scaling from 90nm
       curr_core_tx_density       = 1.25*0.7*0.7*0.4;
       curr_sckt_co_eff           = 1.11;
       curr_chip_layout_overhead  = 1.0;//die measurement results based on Niagara 1 and 2
@@ -554,7 +564,7 @@ void init_tech_params(double technology, bool is_tag)
       curr_area_cell_cam = 292 * g_ip->F_sz_um * g_ip->F_sz_um;//360
       curr_asp_ratio_cell_cam = 2.92;//2.5
       //Empirical undifferetiated core/FU coefficient
-      curr_logic_scaling_co_eff  = 1.0/(0.7*0.7);
+      curr_logic_scaling_co_eff  = 1;
       curr_core_tx_density       = 1.25*0.7*0.7;
       curr_sckt_co_eff           = 1.1539;
       curr_chip_layout_overhead  = 1.2;//die measurement results based on Niagara 1 and 2
@@ -814,7 +824,7 @@ void init_tech_params(double technology, bool is_tag)
       curr_area_cell_cam = 292 * g_ip->F_sz_um * g_ip->F_sz_um;
       curr_asp_ratio_cell_cam = 2.92;
       //Empirical undifferetiated core/FU coefficient
-      curr_logic_scaling_co_eff = 1.0/0.7; //Rather than scale proportionally to square of feature size, only scale linearly according to IBM cell processor
+      curr_logic_scaling_co_eff = 0.7; //Rather than scale proportionally to square of feature size, only scale linearly according to IBM cell processor
       curr_core_tx_density      = 1.25*0.7;
       curr_sckt_co_eff           = 1.1359;
       curr_chip_layout_overhead  = 1.2;//die measurement results based on Niagara 1 and 2
@@ -1074,7 +1084,7 @@ void init_tech_params(double technology, bool is_tag)
       curr_area_cell_cam = 292 * g_ip->F_sz_um * g_ip->F_sz_um;
       curr_asp_ratio_cell_cam = 2.92;
       //Empirical undifferetiated core/FU coefficient
-      curr_logic_scaling_co_eff = 1;
+      curr_logic_scaling_co_eff = 0.7*0.7;
       curr_core_tx_density      = 1.25;
       curr_sckt_co_eff           = 1.1387;
       curr_chip_layout_overhead  = 1.2;//die measurement results based on Niagara 1 and 2
@@ -1349,7 +1359,7 @@ void init_tech_params(double technology, bool is_tag)
       curr_area_cell_cam = 292 * g_ip->F_sz_um * g_ip->F_sz_um;
       curr_asp_ratio_cell_cam = 2.92;
       //Empirical undifferetiated core/FU coefficient
-      curr_logic_scaling_co_eff = 0.7;
+      curr_logic_scaling_co_eff = 0.7*0.7*0.7;
       curr_core_tx_density      = 1.25/0.7;
       curr_sckt_co_eff           = 1.1111;
       curr_chip_layout_overhead  = 1.2;//die measurement results based on Niagara 1 and 2
@@ -1576,7 +1586,7 @@ void init_tech_params(double technology, bool is_tag)
         curr_area_cell_cam = 292 * g_ip->F_sz_um * g_ip->F_sz_um;
         curr_asp_ratio_cell_cam = 2.92;
         //Empirical undifferetiated core/FU coefficient
-        curr_logic_scaling_co_eff = 0.7*0.7;
+        curr_logic_scaling_co_eff = 0.7*0.7*0.7*0.7;
         curr_core_tx_density      = 1.25/0.7/0.7;
         curr_sckt_co_eff           = 1.1296;
         curr_chip_layout_overhead  = 1.2;//die measurement results based on Niagara 1 and 2
@@ -1749,13 +1759,229 @@ void init_tech_params(double technology, bool is_tag)
         curr_area_cell_cam = 292 * g_ip->F_sz_um * g_ip->F_sz_um;
         curr_asp_ratio_cell_cam = 2.92;
         //Empirical undifferetiated core/FU coefficient
-        curr_logic_scaling_co_eff = 0.7*0.7*0.7;
+        curr_logic_scaling_co_eff = 0.7*0.7*0.7*0.7*0.7;
         curr_core_tx_density      = 1.25/0.7/0.7/0.7;
         curr_sckt_co_eff           = 1.1296;
         curr_chip_layout_overhead  = 1.2;//die measurement results based on Niagara 1 and 2
         curr_macro_layout_overhead = 1.1;//EDA placement and routing tool rule of thumb
-    	}
+    }
 
+    if(tech == 7){
+        SENSE_AMP_D = .02e-9; // s
+        SENSE_AMP_P = 2.06e-15; // J
+    	
+	vdd[0] = 0.7;
+        vdd_real[0] = g_ip->specific_hp_vdd ? g_ip->hp_Vdd : vdd[0];
+        alpha_power_law[0] = 1.2;
+        Lphy[0] = 0.007;//Lphy is the physical gate-length.
+        Lelec[0] = 0.00368;//Lelec is the electrical gate-length.
+        t_ox[0] = 0.7e-3;//micron
+        v_th[0] = 0.1215;//V
+        c_ox[0] = 1.89e-14;//F/micron2
+        mobility_eff[0] = 899.37 * (1e-2 * 1e6 * 1e-2 * 1e6); //micron2 / Vs
+        Vdsat[0] = 1.21e-2; //V/micron
+        c_g_ideal[0] = 2.99e-16;//F/micron
+        c_fringe[0] = 0.199e-15;//F/micron
+        c_junc[0] = 0;//F/micron2
+        I_on_n[0] =  916.1e-6*pow((vdd_real[0]-v_th[0])/(vdd[0]-v_th[0]),alpha_power_law[0]);//A/micron
+        I_on_p[0] = I_on_n[0] / 2;//A/micron //This value for I_on_p is not really used.
+        nmos_effective_resistance_multiplier = 1.79;
+        n_to_p_eff_curr_drv_ratio[0] = 1.95;
+        gmp_to_gmn_multiplier[0] = 1.15;
+        Rnchannelon[0] = nmos_effective_resistance_multiplier * vdd_real[0] / I_on_n[0];//ohm-micron
+        Rpchannelon[0] = n_to_p_eff_curr_drv_ratio[0] * Rnchannelon[0];//ohm-micron
+        long_channel_leakage_reduction[0] = 1/2.38;
+        I_off_n[0][0] = 2.06e-8*pow(vdd_real[0]/(vdd[0]),2);
+        I_off_n[0][10] = 3.01e-8*pow(vdd_real[0]/(vdd[0]),2);
+        I_off_n[0][20] = 4.65e-8*pow(vdd_real[0]/(vdd[0]),2);
+        I_off_n[0][30] = 6.81e-8*pow(vdd_real[0]/(vdd[0]),2);
+        I_off_n[0][40] = 9.93e-8*pow(vdd_real[0]/(vdd[0]),2);
+        I_off_n[0][50] = 1.42e-7*pow(vdd_real[0]/(vdd[0]),2);
+        I_off_n[0][60] = 2.22e-7*pow(vdd_real[0]/(vdd[0]),2);
+        I_off_n[0][70] = 3.26e-7*pow(vdd_real[0]/(vdd[0]),2);
+        I_off_n[0][80] = 4.72e-7*pow(vdd_real[0]/(vdd[0]),2);
+        I_off_n[0][90] = 6.73e-7*pow(vdd_real[0]/(vdd[0]),2);
+        I_off_n[0][100] = 9.46e-7*pow(vdd_real[0]/(vdd[0]),2);
+        
+        I_g_on_n[0][0]  = 2.54e-9;//A/micron
+        I_g_on_n[0][10] = 2.54e-9;
+        I_g_on_n[0][20] = 2.54e-9;
+        I_g_on_n[0][30] = 2.54e-9;
+        I_g_on_n[0][40] = 2.54e-9;
+        I_g_on_n[0][50] = 2.54e-9;
+        I_g_on_n[0][60] = 2.54e-9;
+        I_g_on_n[0][70] = 2.54e-9;
+        I_g_on_n[0][80] = 2.54e-9;
+        I_g_on_n[0][90] = 2.54e-9;
+        I_g_on_n[0][100] = 2.54e-9;
+
+
+	vdd[1] = 0.7;
+        vdd_real[1] = g_ip->specific_hp_vdd ? g_ip->hp_Vdd : vdd[0];
+        alpha_power_law[1] = 1.2;
+        Lphy[1] = 0.007;//Lphy is the physical gate-length.
+        Lelec[1] = 0.00368;//Lelec is the electrical gate-length.
+        t_ox[1] = 0.7e-3;//micron
+        v_th[1] = 0.2015;//V
+        c_ox[1] = 1.89e-14;//F/micron2
+        mobility_eff[1] = 899.37 * (1e-2 * 1e6 * 1e-2 * 1e6); //micron2 / Vs
+        Vdsat[1] = 1.21e-2; //V/micron
+        c_g_ideal[1] = 2.99e-16;//F/micron
+        c_fringe[1] = 0.199e-15;//F/micron
+        c_junc[1] = 0;//F/micron2
+        I_on_n[1] =  916.1e-6*pow((vdd_real[1]-v_th[1])/(vdd[1]-v_th[1]),alpha_power_law[1]);//A/micron
+        I_on_p[1] = I_on_n[1] / 2;//A/micron //This value for I_on_p is not really used.
+        nmos_effective_resistance_multiplier = 1.79;
+        n_to_p_eff_curr_drv_ratio[1] = 1.95;
+        gmp_to_gmn_multiplier[1] = 1.15;
+        Rnchannelon[1] = nmos_effective_resistance_multiplier * vdd_real[1] / I_on_n[1];//ohm-micron
+        Rpchannelon[1] = n_to_p_eff_curr_drv_ratio[1] * Rnchannelon[1];//ohm-micron
+        long_channel_leakage_reduction[1] = 1/2.38;
+        I_off_n[1][0] = 2.06e-8*pow(vdd_real[1]/(vdd[1]),2);
+        I_off_n[1][10] = 3.01e-8*pow(vdd_real[1]/(vdd[1]),2);
+        I_off_n[1][20] = 4.65e-8*pow(vdd_real[1]/(vdd[1]),2);
+        I_off_n[1][30] = 6.81e-8*pow(vdd_real[1]/(vdd[1]),2);
+        I_off_n[1][40] = 9.93e-7*pow(vdd_real[1]/(vdd[1]),2);
+        I_off_n[1][50] = 1.42e-7*pow(vdd_real[1]/(vdd[1]),2);
+        I_off_n[1][60] = 2.22e-7*pow(vdd_real[1]/(vdd[1]),2);
+        I_off_n[1][70] = 3.26e-7*pow(vdd_real[1]/(vdd[1]),2);
+        I_off_n[1][80] = 4.72e-7*pow(vdd_real[1]/(vdd[1]),2);
+        I_off_n[1][90] = 6.73e-7*pow(vdd_real[1]/(vdd[1]),2);
+        I_off_n[1][100] = 9.46e-7*pow(vdd_real[1]/(vdd[1]),2);
+        
+        I_g_on_n[1][0]  = 2.54e-9;//A/micron
+        I_g_on_n[1][10] = 2.54e-9;
+        I_g_on_n[1][20] = 2.54e-9;
+        I_g_on_n[1][30] = 2.54e-9;
+        I_g_on_n[1][40] = 2.54e-9;
+        I_g_on_n[1][50] = 2.54e-9;
+        I_g_on_n[1][60] = 2.54e-9;
+        I_g_on_n[1][70] = 2.54e-9;
+        I_g_on_n[1][80] = 2.54e-9;
+        I_g_on_n[1][90] = 2.54e-9;
+        I_g_on_n[1][100] = 2.54e-9;
+
+
+    	vdd[2] = 0.63;
+        vdd_real[2] = g_ip->specific_lop_vdd ? g_ip->lop_Vdd : vdd[2];
+        alpha_power_law[2]=1.21;
+        Lphy[2] = 0.009;
+        Lelec[2] = 0.00504;//Lelec is the electrical gate-length.
+        t_ox[2] = 0.7e-3;//micron
+        v_th[2] = 0.2015;//V
+        c_ox[2] = 2.89e-14;//F/micron2
+        mobility_eff[2] =  898.37 * (1e-2 * 1e6 * 1e-2 * 1e6); //micron2 / Vs
+        Vdsat[2] = 1.21e-2; //V/micron
+        c_g_ideal[2] = 2.99e-16;//F/micron
+        c_fringe[2] = 0.199e-15;
+        c_junc[2] = 0;//F/micron2 This is Cj0 not Cjunc in MASTAR results->Dynamic Tab
+        I_on_n[2] = 1316.1e-6*pow((vdd_real[2]-v_th[2])/(vdd[2]-v_th[2]),alpha_power_law[2]);//A/micron
+        I_on_p[2] = I_on_n[2] / 2;
+        nmos_effective_resistance_multiplier = 1.79;
+        n_to_p_eff_curr_drv_ratio[2] = 1.95;
+        gmp_to_gmn_multiplier[2] = 1.15;
+        Rnchannelon[2] = nmos_effective_resistance_multiplier * vdd_real[2] / I_on_n[2];//ohm-micron
+        Rpchannelon[2] = n_to_p_eff_curr_drv_ratio[2] * Rnchannelon[2];//ohm-micron
+        long_channel_leakage_reduction[2] = 1/2.38;
+
+        I_off_n[2][0] = 1.61e-8*pow(vdd_real[2]/(vdd[2]),5);
+        I_off_n[2][10] = 3.20e-8*pow(vdd_real[2]/(vdd[2]),5);
+        I_off_n[2][20] = 6.43e-8*pow(vdd_real[2]/(vdd[2]),5);
+        I_off_n[2][30] = 1.20e-7*pow(vdd_real[2]/(vdd[2]),5);
+        I_off_n[2][40] = 2.51e-7*pow(vdd_real[2]/(vdd[2]),5);
+        I_off_n[2][50] = 5.05e-7*pow(vdd_real[2]/(vdd[2]),5);
+        I_off_n[2][60] = 1.03e-6*pow(vdd_real[2]/(vdd[2]),5);
+        I_off_n[2][70] = 2.01e-6*pow(vdd_real[2]/(vdd[2]),5);
+        I_off_n[2][80] = 4.03e-6*pow(vdd_real[2]/(vdd[2]),5);
+        I_off_n[2][90] = 7.04e-6*pow(vdd_real[2]/(vdd[2]),5);
+        I_off_n[2][100]= 9.72e-6*pow(vdd_real[2]/(vdd[2]),5);
+
+        I_g_on_n[2][0]  = 2.54e-9;//A/micron
+        I_g_on_n[2][10] = 2.54e-9;
+        I_g_on_n[2][20] = 2.54e-9;
+        I_g_on_n[2][30] = 2.54e-9;
+        I_g_on_n[2][40] = 2.54e-9;
+        I_g_on_n[2][50] = 2.54e-9;
+        I_g_on_n[2][60] = 2.54e-9;
+        I_g_on_n[2][70] = 2.54e-9;
+        I_g_on_n[2][80] = 2.54e-9;
+        I_g_on_n[2][90] = 2.54e-9;
+        I_g_on_n[2][100] = 2.54e-9;
+
+        if (ram_cell_tech_type == 3)
+          {}
+        else if (ram_cell_tech_type == 4)
+        {
+          //parameters
+          curr_vdd_dram_cell = 0.9;
+          Lphy[3] = 0.007;//micron
+          Lelec[3] = 0.0151;//micron.
+          curr_v_th_dram_access_transistor = 1;//V
+          width_dram_access_transistor = 0.007;//micron
+          curr_I_on_dram_cell = 20e-6;
+          curr_I_off_dram_cell_worst_case_length_temp = 1e-15;//A
+          curr_Wmemcella_dram = width_dram_access_transistor;
+          curr_Wmemcellpmos_dram = 0;
+          curr_Wmemcellnmos_dram = 0;
+          curr_area_cell_dram = 6*0.007*0.007;//micron2.
+          curr_asp_ratio_cell_dram = 0.367;
+          curr_c_dram_cell = 30e-15;//This is a typical value that I have alwaus
+          //kept constant.
+
+          curr_vpp = 2.1;//vpp. V
+          t_ox[3] = 3.2e-3;//micron
+          v_th[3] = 1.0;//V
+          c_ox[3] = 12.06e-15;//F/micron2
+          mobility_eff[3] =  357.29 * (1e-2 * 1e6 * 1e-2 * 1e6);//micron2 / Vs
+          Vdsat[3] = 0.0872; //V/micron
+          c_g_ideal[3] = 1.99e-16;//F/micron
+          c_fringe[3] = 0.055e-15;//F/micron
+          c_junc[3] = 1e-15;//F/micron2
+          I_on_n[3] = 890.5e-6;//A/micron
+          I_on_p[3] = I_on_n[3] / 2;//This value for I_on_p is not really used.
+          nmos_effective_resistance_multiplier = 1.69;
+          //
+          n_to_p_eff_curr_drv_ratio[3] = 1.95;
+          gmp_to_gmn_multiplier[3] = 0.90;
+          Rnchannelon[3] = nmos_effective_resistance_multiplier * curr_vpp  / I_on_n[3];//ohm-micron
+          Rpchannelon[3] = n_to_p_eff_curr_drv_ratio[3] * Rnchannelon[3];//ohm-micron
+          long_channel_leakage_reduction[3] = 1;
+          I_off_n[3][0] = 2.1e-13; //A/micron
+          I_off_n[3][10] = 3.11e-13;
+          I_off_n[3][20] = 4.88e-13;
+          I_off_n[3][30] = 8.9e-13;
+          I_off_n[3][40] = 2.19e-12;
+          I_off_n[3][50] = 2.98e-12;
+          I_off_n[3][60] = 4.22e-12;
+          I_off_n[3][70] = 6.09e-12;
+          I_off_n[3][80] = 8.85e-12;
+          I_off_n[3][90] = 2.18e-11;
+          I_off_n[3][100] = 2.72e-11;
+    	  }
+        else
+        { 
+          
+        }
+
+        //SRAM cell properties
+        curr_Wmemcella_sram      = 1.31 * g_ip->F_sz_um;
+        curr_Wmemcellpmos_sram   = 1.23 * g_ip->F_sz_um;
+        curr_Wmemcellnmos_sram   = 2.08 * g_ip->F_sz_um;
+        curr_area_cell_sram      = 146 * g_ip->F_sz_um * g_ip->F_sz_um;
+        curr_asp_ratio_cell_sram = 1.46;
+        //CAM cell properties 
+        curr_Wmemcella_cam = 1.31 * g_ip->F_sz_um;
+        curr_Wmemcellpmos_cam = 1.23 * g_ip->F_sz_um;
+        curr_Wmemcellnmos_cam = 2.08 * g_ip->F_sz_um;
+        curr_area_cell_cam = 292 * g_ip->F_sz_um * g_ip->F_sz_um;
+        curr_asp_ratio_cell_cam = 2.92;
+        //Empirical undifferetiated core/FU coefficient
+        curr_logic_scaling_co_eff  = 0.7*0.7*0.7*0.7*0.7*0.7;
+        curr_core_tx_density       = 1.25/0.7/0.7/0.7/0.7;
+        curr_sckt_co_eff           = 1.2296;
+        curr_chip_layout_overhead  = 1.2;//die measurement results based on Niagara 1 and 2
+        curr_macro_layout_overhead = 1.1;//EDA placement and routing tool rule of thumb
+    }
     /*
      * TODO:WL_Vcc does not need to retain data as long as the wordline enable signal is not active (of course enable signal will not be active since it is idle)
      * So, the WL_Vcc only need to balance the leakage reduction and the required waking up restore time (as mentioned in the 4.0Ghz 291 Mb SRAM Intel Paper)
@@ -1984,9 +2210,9 @@ void init_tech_params(double technology, bool is_tag)
   g_tp.w_pmos_bl_eq = pmos_to_nmos_sizing_r * g_tp.min_w_nmos_;
 
   //DVS and power-gating voltage finalization
-  if (g_tp.sram_cell.Vcc_min_default > g_tp.sram_cell.Vdd
+  if ((g_tp.sram_cell.Vcc_min_default > g_tp.sram_cell.Vdd
 		  || g_tp.peri_global.Vdd < g_tp.peri_global.Vdd_default*0.75
-		  || g_tp.sram_cell.Vdd < g_tp.sram_cell.Vdd_default*0.75)
+		  || g_tp.sram_cell.Vdd < g_tp.sram_cell.Vdd_default*0.75) && (!g_ip->is_main_mem))
     {
       cerr << "User defined Vdd is too low.\n\n"<< endl;
       exit(0);
@@ -2021,8 +2247,8 @@ void init_tech_params(double technology, bool is_tag)
 	  g_ip->user_defined_vcc_underflow = false;
   }
 
-  if (g_tp.sram_cell.Vcc_min > g_tp.sram_cell.Vdd
-		  || g_tp.peri_global.Vcc_min > g_tp.peri_global.Vdd)
+  if ((g_tp.sram_cell.Vcc_min > g_tp.sram_cell.Vdd
+		  || g_tp.peri_global.Vcc_min > g_tp.peri_global.Vdd)&& (!g_ip->is_main_mem))
     {
       cerr << "User defined power-saving supply voltage cannot be lower than Vdd (DVS0).\n\n"<< endl;
       exit(0);
@@ -2610,9 +2836,9 @@ void init_tech_params(double technology, bool is_tag)
       wire_c_per_micron[1][3] = 31e-15 / (256 * 2 * 0.032);//F/micron
       wire_r_per_micron[1][3] = 12 / 0.032;//ohm/micron
     }
-    else if (tech == 22)
+    else if (tech == 22 || tech == 7)
         {
-          //Aggressive projections.
+ //Aggressive projections.
           wire_pitch[0][0] = 2.5 * g_ip->F_sz_um;//local
           aspect_ratio[0][0] = 3.0;
           wire_width = wire_pitch[0][0] / 2;
@@ -2794,6 +3020,7 @@ void init_tech_params(double technology, bool is_tag)
 //            wire_c_per_micron[1][6] = wire_capacitance(wire_width, wire_thickness, wire_spacing,
 //            		ild_thickness, miller_value, horiz_dielectric_constant, vert_dielectric_constant,
 //            		fringe_cap);
+        
         }
 
     else if (tech == 16)
@@ -2981,6 +3208,8 @@ void init_tech_params(double technology, bool is_tag)
 //            		ild_thickness, miller_value, horiz_dielectric_constant, vert_dielectric_constant,
 //            		fringe_cap);
         }
+
+
     g_tp.wire_local.pitch    += curr_alpha * wire_pitch[g_ip->ic_proj_type][(ram_cell_tech_type == comm_dram)?3:0];
     g_tp.wire_local.R_per_um += curr_alpha * wire_r_per_micron[g_ip->ic_proj_type][(ram_cell_tech_type == comm_dram)?3:0];
     g_tp.wire_local.C_per_um += curr_alpha * wire_c_per_micron[g_ip->ic_proj_type][(ram_cell_tech_type == comm_dram)?3:0];
